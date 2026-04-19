@@ -1,0 +1,23 @@
+services:
+  bot:
+    build: .
+    container_name: english_level_bot
+    restart: unless-stopped
+    env_file:
+      - .env
+    volumes:
+      # Персистентность БД и логов
+      - ./data:/app/data
+      - ./logs:/app/logs
+    environment:
+      - DATABASE_PATH=/app/data/bot_data.db
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+    healthcheck:
+      test: ["CMD", "python", "-c", "import sys; sys.exit(0)"]
+      interval: 30s
+      timeout: 10s
+      retries: 3

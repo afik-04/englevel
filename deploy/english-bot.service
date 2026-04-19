@@ -1,0 +1,34 @@
+[Unit]
+Description=English Level Test Telegram Bot
+After=network.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=botuser
+Group=botuser
+WorkingDirectory=/opt/english-bot
+Environment="PATH=/opt/english-bot/venv/bin"
+EnvironmentFile=/opt/english-bot/.env
+ExecStart=/opt/english-bot/venv/bin/python /opt/english-bot/main.py
+
+# Автоматический перезапуск при падении
+Restart=always
+RestartSec=10
+StartLimitInterval=60
+StartLimitBurst=5
+
+# Логи через journald
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=english-bot
+
+# Безопасность
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/opt/english-bot/data /opt/english-bot/logs
+
+[Install]
+WantedBy=multi-user.target

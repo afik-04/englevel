@@ -1,0 +1,46 @@
+# Секреты и конфиги
+.env
+.env.local
+.env.*.local
+*.pem
+*.key
+
+# База данных
+*.db
+*.sqlite3
+*.sqlite
+
+# Логи
+logs/
+*.log
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+.venv/
+*.egg-info/
+dist/
+build/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+
+# Django (на случай если вернётся)
+db.sqlite3
+media/
+staticfiles/
+
+# Тесты и покрытие
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
